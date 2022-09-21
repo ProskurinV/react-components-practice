@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import defaultImage from './default.jpg';
 
 const Painting = ({
@@ -6,6 +7,7 @@ const Painting = ({
   profileUrl,
   author = 'не известно',
   price,
+  quantity,
 }) => {
   return (
     <div>
@@ -15,10 +17,19 @@ const Painting = ({
         Автор: <a href={profileUrl}>{author}</a>
       </p>
       <p>Цена: {price} кредитов</p>
-      <p>Доступность: </p>
+      <p>Доступность: {quantity < 10 ? 'заканчивается' : 'есть в наличии'} </p>
       <button type="button">Добавить в корзину</button>
     </div>
   );
+};
+
+Painting.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  profileUrl: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default Painting;
